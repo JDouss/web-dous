@@ -1,14 +1,22 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Shield, Database, Cloud } from 'lucide-react';
+import { ArrowUpRight, Shield, Database, Cloud, MapPin, Camera } from 'lucide-react';
 
-const BentoItem = ({ children, className, delay = 0 }) => (
+const BentoItem = ({ children, className, delay = 0, style }) => (
     <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, delay }}
         className={`clean-panel ${className}`}
-        style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column' }}
+        style={{
+            padding: '2rem',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            position: 'relative',
+            ...style
+        }}
     >
         {children}
     </motion.div>
@@ -18,65 +26,171 @@ const BentoGrid = () => {
     return (
         <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gridTemplateRows: 'auto auto',
+            gridTemplateColumns: 'repeat(12, 1fr)',
+            autoRows: 'minmax(300px, auto)',
             gap: '1.5rem',
             padding: '4rem 0'
         }}>
-            {/* Hero Section - Large */}
-            <BentoItem className="hero" delay={0} style={{ gridColumn: 'span 2', gridRow: 'span 1' }}>
-                <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <h1 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', fontWeight: '700', letterSpacing: '-0.03em' }}>
-                        Technical Program Manager<br />
-                        <span style={{ color: 'var(--color-text-secondary)', fontWeight: '400' }}>Cybersecurity & Cloud Architecture</span>
-                    </h1>
-                    <p style={{ fontSize: '1.15rem', marginBottom: '2.5rem', maxWidth: '90%', lineHeight: '1.7' }}>
-                        Driving security strategy for high-assurance environments. Specializing in Zero Trust architecture, supply chain security, and cloud risk management at enterprise scale.
-                    </p>
+
+            {/* Profile / Hero Section - Name Focused */}
+            <BentoItem style={{ gridColumn: 'span 8', minHeight: '500px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between', zIndex: 2 }}>
+                    <div>
+                        <h1 style={{
+                            fontSize: '4.5rem',
+                            fontWeight: '700',
+                            letterSpacing: '-0.04em',
+                            lineHeight: '1',
+                            marginBottom: '1.5rem'
+                        }}>
+                            Jaime<br />Doussinague
+                        </h1>
+                        <p style={{ fontSize: '1.25rem', maxWidth: '80%', color: 'var(--color-text-secondary)' }}>
+                            Technical Program Manager based in Spain.
+                            <br />
+                            Bridging complex security architecture with business strategy.
+                        </p>
+                    </div>
                     <div style={{ display: 'flex', gap: '1rem' }}>
                         <Link to="/cv" className="btn">View Experience</Link>
-                        <a href="mailto:jaimedoussinague@gmail.com" className="btn btn-outline">Contact</a>
+                        <a href="mailto:jaimedoussinague@gmail.com" className="btn btn-outline">Get in Touch</a>
                     </div>
                 </div>
             </BentoItem>
 
-            {/* Current Role */}
-            <BentoItem delay={0.1} style={{ gridColumn: 'span 1' }}>
-                <h3 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-secondary)', marginBottom: '1.5rem' }}>Current Role</h3>
-                <div style={{ marginTop: 'auto' }}>
-                    <p style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '0.5rem', color: 'var(--color-text-primary)' }}>Google</p>
-                    <p style={{ fontSize: '1.1rem', color: 'var(--color-text-secondary)' }}>TPM - Google Cloud CISO Security</p>
+            {/* Profile Image */}
+            <BentoItem style={{ gridColumn: 'span 4', padding: 0, border: 'none', background: 'transparent' }} delay={0.1}>
+                <img
+                    src="/web-dous/images/profile.jpg"
+                    alt="Jaime Doussinague"
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        borderRadius: '0.5rem',
+                        filter: 'grayscale(20%) contrast(110%)'
+                    }}
+                />
+            </BentoItem>
+
+            {/* Current Role - Wide Bar */}
+            <BentoItem style={{ gridColumn: 'span 12', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 'auto', padding: '2.5rem' }} delay={0.2}>
+                <div>
+                    <h3 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Current Role</h3>
+                    <p style={{ fontSize: '1.75rem', fontWeight: '600' }}>Google Cloud CISO Security</p>
+                </div>
+                <div style={{ textAlign: 'right' }}>
+                    <p style={{ fontSize: '1.1rem', color: 'var(--color-text-secondary)' }}>Technical Program Manager</p>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>Securing the Cloud</p>
                 </div>
             </BentoItem>
 
-            {/* Expertise */}
-            <BentoItem delay={0.2} style={{ gridColumn: 'span 1' }}>
-                <h3 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-secondary)', marginBottom: '1.5rem' }}>Core Competencies</h3>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1rem' }}>
-                        <Cloud size={18} color="var(--color-accent)" /> Cloud Security (Azure/GCP)
+            {/* Aesthetic Image 1 - Temple */}
+            <BentoItem style={{ gridColumn: 'span 6', padding: 0, minHeight: '400px' }} delay={0.3}>
+                <img
+                    src="/web-dous/images/travel-temple.jpg"
+                    alt="Travel Photography"
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        transition: 'transform 0.5s ease'
+                    }}
+                />
+                <div style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    padding: '2rem',
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
+                    color: 'white'
+                }}>
+                    <p style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '500' }}>
+                        <Camera size={18} /> Photography
+                    </p>
+                </div>
+            </BentoItem>
+
+            {/* Core Competencies - Vertical List */}
+            <BentoItem style={{ gridColumn: 'span 6' }} delay={0.4}>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '2rem' }}>Core Competencies</h3>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                        <div style={{ padding: '0.5rem', background: 'var(--color-bg-primary)', borderRadius: '0.25rem' }}>
+                            <Cloud size={20} color="var(--color-accent)" />
+                        </div>
+                        <div>
+                            <h4 style={{ margin: 0, fontSize: '1.1rem' }}>Cloud Security</h4>
+                            <p style={{ fontSize: '0.9rem', margin: 0 }}>Azure & GCP Architecture</p>
+                        </div>
                     </li>
-                    <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1rem' }}>
-                        <Shield size={18} color="var(--color-accent)" /> Zero Trust Architecture
+                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                        <div style={{ padding: '0.5rem', background: 'var(--color-bg-primary)', borderRadius: '0.25rem' }}>
+                            <Shield size={20} color="var(--color-accent)" />
+                        </div>
+                        <div>
+                            <h4 style={{ margin: 0, fontSize: '1.1rem' }}>Zero Trust</h4>
+                            <p style={{ fontSize: '0.9rem', margin: 0 }}>Identity & Access Strategy</p>
+                        </div>
                     </li>
-                    <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1rem' }}>
-                        <Database size={18} color="var(--color-accent)" /> Risk Management
+                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                        <div style={{ padding: '0.5rem', background: 'var(--color-bg-primary)', borderRadius: '0.25rem' }}>
+                            <Database size={20} color="var(--color-accent)" />
+                        </div>
+                        <div>
+                            <h4 style={{ margin: 0, fontSize: '1.1rem' }}>Risk Management</h4>
+                            <p style={{ fontSize: '0.9rem', margin: 0 }}>High Assurance Environments</p>
+                        </div>
                     </li>
                 </ul>
             </BentoItem>
 
-            {/* Certifications */}
-            <BentoItem delay={0.3} style={{ gridColumn: 'span 1' }}>
-                <h3 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-secondary)', marginBottom: '1.5rem' }}>Certifications</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-                    {['CISSP', 'CCSP', 'AZ-500', 'AZ-305', 'DP-203', 'AI-100'].map(cert => (
+            {/* Aesthetic Image 2 - City */}
+            <BentoItem style={{ gridColumn: 'span 4', padding: 0, minHeight: '300px' }} delay={0.5}>
+                <img
+                    src="/web-dous/images/travel-city.jpg"
+                    alt="City Photography"
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                    }}
+                />
+            </BentoItem>
+
+            {/* Location / Connect */}
+            <BentoItem style={{ gridColumn: 'span 4', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }} delay={0.6}>
+                <div style={{
+                    width: '60px',
+                    height: '60px',
+                    borderRadius: '50%',
+                    background: 'var(--color-bg-primary)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '1.5rem'
+                }}>
+                    <MapPin size={24} color="var(--color-accent)" />
+                </div>
+                <h3 style={{ marginBottom: '0.5rem' }}>Based in Spain</h3>
+                <p style={{ fontSize: '0.9rem', marginBottom: '1.5rem' }}>Available for global opportunities.</p>
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-text-primary)' }}>LinkedIn</a>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-text-primary)' }}>GitHub</a>
+                </div>
+            </BentoItem>
+
+            {/* Certifications - Compact */}
+            <BentoItem style={{ gridColumn: 'span 4' }} delay={0.7}>
+                <h3 style={{ fontSize: '1rem', marginBottom: '1.5rem' }}>Certifications</h3>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    {['CISSP', 'CCSP', 'AZ-500', 'AZ-305', 'DP-203'].map(cert => (
                         <span key={cert} style={{
-                            fontSize: '0.9rem',
-                            padding: '0.35rem 0.75rem',
+                            fontSize: '0.8rem',
+                            padding: '0.25rem 0.5rem',
                             border: '1px solid var(--color-border)',
                             borderRadius: '0.25rem',
-                            fontWeight: '500',
-                            color: 'var(--color-text-primary)',
                             background: 'var(--color-bg-primary)'
                         }}>
                             {cert}
@@ -85,18 +199,6 @@ const BentoGrid = () => {
                 </div>
             </BentoItem>
 
-            {/* Connect */}
-            <BentoItem delay={0.4} style={{ gridColumn: 'span 1' }}>
-                <h3 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-secondary)', marginBottom: '1.5rem' }}>Connect</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '1rem', fontWeight: '500' }}>
-                        LinkedIn <ArrowUpRight size={18} color="var(--color-text-secondary)" />
-                    </a>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '1rem', fontWeight: '500' }}>
-                        GitHub <ArrowUpRight size={18} color="var(--color-text-secondary)" />
-                    </a>
-                </div>
-            </BentoItem>
         </div>
     );
 };
