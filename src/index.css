@@ -1,12 +1,26 @@
 :root {
-  /* Dark Theme Palette */
-  --color-bg-primary: #0f172a; /* Slate 900 */
-  --color-bg-secondary: #1e293b; /* Slate 800 */
-  --color-text-primary: #f8fafc; /* Slate 50 */
-  --color-text-secondary: #94a3b8; /* Slate 400 */
-  --color-accent: #38bdf8; /* Sky 400 */
-  --color-accent-hover: #0ea5e9; /* Sky 500 */
-  --color-border: #334155; /* Slate 700 */
+  /* Cyber/Pro Dark Theme Palette */
+  --color-bg-primary: #0B1120;
+  /* Deep Navy */
+  --color-bg-secondary: #1E293B;
+  /* Slate 800 */
+  --color-text-primary: #F1F5F9;
+  /* Slate 100 */
+  --color-text-secondary: #94A3B8;
+  /* Slate 400 */
+  --color-accent: #38BDF8;
+  /* Sky 400 */
+  --color-accent-hover: #0EA5E9;
+  /* Sky 500 */
+  --color-accent-secondary: #2DD4BF;
+  /* Teal 400 */
+  --color-border: #334155;
+  /* Slate 700 */
+
+  /* Glassmorphism */
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 
   /* Typography */
   --font-sans: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -26,22 +40,29 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a {
   color: var(--color-accent);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 a:hover {
   color: var(--color-accent-hover);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.2;
   margin-bottom: 1rem;
   color: var(--color-text-primary);
+  letter-spacing: -0.02em;
 }
 
 p {
@@ -57,7 +78,9 @@ p {
 }
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.75rem 1.5rem;
   background-color: var(--color-accent);
   color: var(--color-bg-primary);
@@ -65,10 +88,35 @@ p {
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .btn:hover {
   background-color: var(--color-accent-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 1rem;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-text-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grid-bg {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
 }
