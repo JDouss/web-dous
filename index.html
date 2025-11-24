@@ -1,17 +1,60 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/web-dous/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <title>Web Dous</title>
-    <script type="module" crossorigin src="/web-dous/assets/index-lImR0xPW.js"></script>
-    <link rel="stylesheet" crossorigin href="/web-dous/assets/index-BF6a2GiA.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/web-dous/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO & Open Graph -->
+  <meta name="description"
+    content="Technical Program Manager specializing in Cybersecurity, Cloud Architecture, and High Assurance Environments.">
+  <meta property="og:title" content="Jaime Doussinague | Technical Program Manager">
+  <meta property="og:description"
+    content="Technical Program Manager specializing in Cybersecurity, Cloud Architecture, and High Assurance Environments.">
+  <meta property="og:image" content="https://jdouss.github.io/web-dous/og-image.png">
+  <meta property="og:url" content="https://jdouss.github.io/web-dous/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- GitHub Pages SPA Redirect Script -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    // This script checks to see if a redirect is present in the query string,
+    // converts it back into the correct url and adds it to the
+    // browser's history using window.history.replaceState(...),
+    // which won't cause the browser to attempt to load the new url.
+    // When the single page app is loaded further down in this file,
+    // the correct url will be waiting in the browser's history for
+    // the single page app to route accordingly.
+    (function (l) {
+      if (l.search[1] === 'p') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <title>Jaime Doussinague | TPM</title>
+  <script type="module" crossorigin src="/web-dous/assets/index-vpr6yvS9.js"></script>
+  <link rel="stylesheet" crossorigin href="/web-dous/assets/index-BfKjoLv6.css">
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
 </html>
