@@ -9,25 +9,30 @@ const TimelineItem = ({ title, subtitle, date, description, index }) => {
             transition={{ delay: index * 0.1 }}
             style={{
                 display: 'flex',
-                gap: '2rem',
-                marginBottom: '3rem',
-                alignItems: 'flex-start'
+                gap: '3rem',
+                marginBottom: '4rem',
+                alignItems: 'flex-start',
+                position: 'relative'
             }}
         >
+            {/* Date Column */}
             <div style={{
-                minWidth: '120px',
+                minWidth: '140px',
                 textAlign: 'right',
                 paddingTop: '0.25rem',
                 color: 'var(--color-text-secondary)',
-                fontSize: '0.9rem'
+                fontSize: '0.95rem',
+                fontWeight: '500',
+                fontFamily: 'var(--font-header)'
             }}>
                 {date}
             </div>
 
-            <div style={{ flex: 1 }}>
-                <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600' }}>{title}</h3>
-                <p style={{ color: 'var(--color-text-secondary)', marginBottom: '0.75rem' }}>{subtitle}</p>
-                <div style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--color-text-primary)' }}>
+            {/* Content Column */}
+            <div style={{ flex: 1, paddingBottom: '2rem', borderBottom: '1px solid var(--color-border)' }}>
+                <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: '700', marginBottom: '0.25rem' }}>{title}</h3>
+                <p style={{ color: 'var(--color-accent)', fontWeight: '600', marginBottom: '1rem', fontSize: '1rem' }}>{subtitle}</p>
+                <div style={{ fontSize: '1.05rem', lineHeight: '1.7', color: 'var(--color-text-primary)' }}>
                     {description}
                 </div>
             </div>
@@ -48,9 +53,9 @@ const Timeline = () => {
             subtitle: 'Microsoft',
             date: 'Previous',
             description: (
-                <ul style={{ paddingLeft: '1rem', margin: 0 }}>
-                    <li>Led the Security Monitoring pillar for the organization, driving detection strategy and KPI compliance for critical high-security environments.</li>
-                    <li>Defined code signing client strategy and set tenant isolation security requirements for over 700 customers. Achieved 94% adoption of secure auth methods, significantly mitigating supply chain risks.</li>
+                <ul style={{ paddingLeft: '1.2rem', margin: 0 }}>
+                    <li style={{ marginBottom: '0.5rem' }}>Drove program strategy for proactive security detection and monitoring for high-value environments.</li>
+                    <li style={{ marginBottom: '0.5rem' }}>Developed and led the adoption strategy for core security requirements across large-scale distributed services, mitigating supply chain risks across numerous tenant customers.</li>
                     <li>Managed risk assessments for High Security workloads, maintaining a risk register and ensuring compliance with strict security standards to support proactive risk management.</li>
                 </ul>
             )
@@ -60,9 +65,9 @@ const Timeline = () => {
             subtitle: 'Microsoft',
             date: 'Previous',
             description: (
-                <ul style={{ paddingLeft: '1rem', margin: 0 }}>
-                    <li>Designed enterprise-scale cloud architectures compliant with strict security requirements, advising on secure landing zones and Zero Trust principles.</li>
-                    <li>Led the manufacturing vertical, architecting tailored cloud solutions for Infrastructure, Energy, and Industrial sectors.</li>
+                <ul style={{ paddingLeft: '1.2rem', margin: 0 }}>
+                    <li style={{ marginBottom: '0.5rem' }}>Designed enterprise-scale cloud architectures compliant with strict security requirements, advising on secure landing zones and Zero Trust principles.</li>
+                    <li style={{ marginBottom: '0.5rem' }}>Led the manufacturing vertical, architecting tailored cloud solutions for Infrastructure, Energy, and Industrial sectors.</li>
                     <li>Performed cybersecurity risk assessments for data and infrastructure, elaborating mitigation plans for C-level executives to ensure availability of critical applications.</li>
                 </ul>
             )
@@ -80,7 +85,7 @@ const Timeline = () => {
             description: 'Analytics support.'
         },
         {
-            title: 'Double Master’s Degree in Industrial Engineering',
+            title: 'Double Master’s Degree in Industrial Engineering & Connected Industry',
             subtitle: 'Universidad Pontificia de Comillas (ICAI)',
             date: 'Education',
             description: 'Specialized in Connected Industry.'
@@ -88,7 +93,7 @@ const Timeline = () => {
     ];
 
     return (
-        <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem 0' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem 0' }}>
             {experiences.map((exp, index) => (
                 <TimelineItem key={index} {...exp} index={index} />
             ))}

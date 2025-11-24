@@ -1,22 +1,21 @@
 :root {
-  /* Minimalist / Anthropic-inspired Palette */
-  --color-bg-primary: #111111;
-  /* Near Black */
-  --color-bg-secondary: #1A1A1A;
+  /* Blueprint / Senior TPM Light Theme */
+  --color-bg-primary: #F9FAFB;
+  /* Off-White / Paper */
+  --color-bg-secondary: #FFFFFF;
+  /* Pure White Cards */
+  --color-text-primary: #111827;
   /* Deep Charcoal */
-  --color-text-primary: #FFFFFF;
-  /* Pure White */
-  --color-text-secondary: #A1A1AA;
-  /* Light Gray */
-  --color-accent: #FFFFFF;
-  /* White Accent */
-  --color-border: #333333;
-  /* Dark Gray Border */
+  --color-text-secondary: #4B5563;
+  /* Cool Gray */
+  --color-accent: #002FA7;
+  /* International Klein Blue */
+  --color-border: #E5E7EB;
+  /* Light Gray Border */
 
   /* Typography */
-  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Georgia', serif;
-  /* Optional for headings if desired, keeping sans for now */
+  --font-header: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 * {
@@ -26,7 +25,7 @@
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   line-height: 1.6;
@@ -38,11 +37,11 @@ body {
 a {
   color: var(--color-text-primary);
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-  opacity: 0.7;
+  color: var(--color-accent);
 }
 
 h1,
@@ -51,15 +50,17 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: var(--font-header);
   line-height: 1.1;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  /* Increased whitespace */
   color: var(--color-text-primary);
-  letter-spacing: -0.03em;
-  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
 p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   color: var(--color-text-secondary);
   font-size: 1.05rem;
   font-weight: 400;
@@ -67,8 +68,7 @@ p {
 
 /* Utilities */
 .container {
-  max-width: 1000px;
-  /* Slightly tighter container for reading */
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -77,24 +77,24 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--color-text-primary);
-  color: var(--color-bg-primary);
+  padding: 0.875rem 1.75rem;
+  /* Larger touch target */
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+  font-family: var(--font-body);
   font-weight: 500;
   border-radius: 0.25rem;
-  /* Sharper corners */
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .btn:hover {
-  opacity: 0.9;
-  transform: none;
-  /* Removed movement */
-  box-shadow: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 47, 167, 0.15);
+  color: #FFFFFF;
 }
 
 .btn-outline {
@@ -106,23 +106,25 @@ p {
 .btn-outline:hover {
   border-color: var(--color-text-primary);
   background-color: transparent;
+  color: var(--color-text-primary);
 }
 
-/* Clean Panel - No Blur */
+/* Clean Panel - Light Mode */
 .clean-panel {
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-border);
   border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  /* Subtle shadow */
 }
 
 .gradient-text {
-  /* Removed gradient for minimalism, keeping class for compatibility but making it white */
   color: var(--color-text-primary);
   background: none;
   -webkit-text-fill-color: initial;
 }
 
 .grid-bg {
-  /* Subtle grain or noise could be nice, but sticking to solid for now */
   background-color: var(--color-bg-primary);
+  /* Optional: Subtle grid pattern if desired, keeping clean for now */
 }
