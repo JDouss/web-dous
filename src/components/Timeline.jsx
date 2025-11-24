@@ -1,63 +1,35 @@
 import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap } from 'lucide-react';
 
-const TimelineItem = ({ title, subtitle, date, description, type = 'work', index }) => {
-    const Icon = type === 'work' ? Briefcase : GraduationCap;
-
+const TimelineItem = ({ title, subtitle, date, description, index }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
             style={{
                 display: 'flex',
-                gap: '1.5rem',
-                marginBottom: '2rem',
-                position: 'relative'
+                gap: '2rem',
+                marginBottom: '3rem',
+                alignItems: 'flex-start'
             }}
         >
             <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center'
+                minWidth: '120px',
+                textAlign: 'right',
+                paddingTop: '0.25rem',
+                color: 'var(--color-text-secondary)',
+                fontSize: '0.9rem'
             }}>
-                <div style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    background: 'var(--color-bg-secondary)',
-                    border: '1px solid var(--color-accent)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: 2
-                }}>
-                    <Icon size={20} color="var(--color-accent)" />
-                </div>
-                <div style={{
-                    width: '2px',
-                    flex: 1,
-                    background: 'var(--color-border)',
-                    marginTop: '0.5rem'
-                }} />
+                {date}
             </div>
 
-            <div className="glass-panel" style={{ flex: 1, padding: '1.5rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                    <h3 style={{ margin: 0 }}>{title}</h3>
-                    <span style={{
-                        fontSize: '0.85rem',
-                        padding: '0.25rem 0.75rem',
-                        background: 'var(--color-bg-primary)',
-                        borderRadius: '1rem',
-                        color: 'var(--color-accent)'
-                    }}>
-                        {date}
-                    </span>
+            <div style={{ flex: 1 }}>
+                <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600' }}>{title}</h3>
+                <p style={{ color: 'var(--color-text-secondary)', marginBottom: '0.75rem' }}>{subtitle}</p>
+                <div style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--color-text-primary)' }}>
+                    {description}
                 </div>
-                <p style={{ color: 'var(--color-text-primary)', fontWeight: '500', marginBottom: '0.5rem' }}>{subtitle}</p>
-                <p style={{ fontSize: '0.95rem' }}>{description}</p>
             </div>
         </motion.div>
     );
@@ -66,30 +38,57 @@ const TimelineItem = ({ title, subtitle, date, description, type = 'work', index
 const Timeline = () => {
     const experiences = [
         {
-            title: 'Senior TPM - Cybersecurity',
-            subtitle: 'Big Tech Corp',
-            date: '2022 - Present',
-            description: 'Leading cross-functional security initiatives, implementing Zero Trust architecture, and managing risk compliance for cloud infrastructure.',
-            type: 'work'
+            title: 'Technical Program Manager – Google Cloud CISO Security',
+            subtitle: 'Google',
+            date: 'Present',
+            description: 'Securing Google Cloud.'
         },
         {
-            title: 'Security Engineer',
-            subtitle: 'CyberDefense Inc',
-            date: '2019 - 2022',
-            description: 'Conducted penetration testing, vulnerability assessments, and automated security pipelines (DevSecOps).',
-            type: 'work'
+            title: 'Technical Program Manager – High Security Environments',
+            subtitle: 'Microsoft',
+            date: 'Previous',
+            description: (
+                <ul style={{ paddingLeft: '1rem', margin: 0 }}>
+                    <li>Led the Security Monitoring pillar for the organization, driving detection strategy and KPI compliance for critical high-security environments.</li>
+                    <li>Defined code signing client strategy and set tenant isolation security requirements for over 700 customers. Achieved 94% adoption of secure auth methods, significantly mitigating supply chain risks.</li>
+                    <li>Managed risk assessments for High Security workloads, maintaining a risk register and ensuring compliance with strict security standards to support proactive risk management.</li>
+                </ul>
+            )
         },
         {
-            title: 'MSc Cybersecurity',
-            subtitle: 'Tech University',
-            date: '2017 - 2019',
-            description: 'Specialized in Cryptography and Network Security. Graduated with Distinction.',
-            type: 'education'
+            title: 'Cloud Solution Architect - Manufacturing',
+            subtitle: 'Microsoft',
+            date: 'Previous',
+            description: (
+                <ul style={{ paddingLeft: '1rem', margin: 0 }}>
+                    <li>Designed enterprise-scale cloud architectures compliant with strict security requirements, advising on secure landing zones and Zero Trust principles.</li>
+                    <li>Led the manufacturing vertical, architecting tailored cloud solutions for Infrastructure, Energy, and Industrial sectors.</li>
+                    <li>Performed cybersecurity risk assessments for data and infrastructure, elaborating mitigation plans for C-level executives to ensure availability of critical applications.</li>
+                </ul>
+            )
+        },
+        {
+            title: 'Data Analyst Intern',
+            subtitle: 'CoverWallet',
+            date: 'Previous',
+            description: 'Data analysis and reporting.'
+        },
+        {
+            title: 'GBS Analytics Intern',
+            subtitle: 'IBM',
+            date: 'Previous',
+            description: 'Analytics support.'
+        },
+        {
+            title: 'Double Master’s Degree in Industrial Engineering',
+            subtitle: 'Universidad Pontificia de Comillas (ICAI)',
+            date: 'Education',
+            description: 'Specialized in Connected Industry.'
         }
     ];
 
     return (
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem 0' }}>
             {experiences.map((exp, index) => (
                 <TimelineItem key={index} {...exp} index={index} />
             ))}
