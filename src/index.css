@@ -1,17 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  /* Blueprint / Senior TPM Light Theme */
-  --color-bg-primary: #F9FAFB;
-  /* Off-White / Paper */
-  --color-bg-secondary: #FFFFFF;
-  /* Pure White Cards */
-  --color-text-primary: #111827;
-  /* Deep Charcoal */
-  --color-text-secondary: #4B5563;
-  /* Cool Gray */
-  --color-accent: #002FA7;
-  /* International Klein Blue */
-  --color-border: #E5E7EB;
-  /* Light Gray Border */
+  /* Brittany Chiang Light Theme Adaptation */
+  --color-bg-primary: #FAFAFA;
+  /* Off-White Background */
+  --color-text-primary: #1E293B;
+  /* Slate 800 - Headings */
+  --color-text-secondary: #64748B;
+  /* Slate 500 - Body */
+  --color-accent: #0F172A;
+  /* Slate 900 - Active/Hover */
+  --color-accent-light: #E2E8F0;
+  /* Slate 200 - Hover Backgrounds */
+  --color-link: #1E293B;
+  /* Slate 800 */
 
   /* Typography */
   --font-header: 'Outfit', sans-serif;
@@ -27,17 +31,24 @@
 body {
   font-family: var(--font-body);
   background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   line-height: 1.6;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
+/* Selection Color */
+::selection {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+}
+
 a {
-  color: var(--color-text-primary);
+  color: var(--color-link);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  font-weight: 600;
 }
 
 a:hover {
@@ -52,79 +63,83 @@ h5,
 h6 {
   font-family: var(--font-header);
   line-height: 1.1;
-  margin-bottom: 1.5rem;
-  /* Increased whitespace */
   color: var(--color-text-primary);
-  letter-spacing: -0.02em;
   font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 p {
-  margin-bottom: 1.5rem;
-  color: var(--color-text-secondary);
-  font-size: 1.05rem;
-  font-weight: 400;
-}
-
-/* Utilities */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.875rem 1.75rem;
-  /* Larger touch target */
-  background-color: var(--color-accent);
-  color: #FFFFFF;
-  font-family: var(--font-body);
-  font-weight: 500;
-  border-radius: 0.25rem;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-decoration: none;
+  margin-bottom: 1rem;
   font-size: 1rem;
+  line-height: 1.7;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 47, 167, 0.15);
-  color: #FFFFFF;
+/* Layout Utilities */
+.lg-split-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-.btn-outline {
-  background-color: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-text-primary);
+@media (min-width: 1024px) {
+  .lg-split-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 4rem;
+    padding: 0 4rem;
+  }
 }
 
-.btn-outline:hover {
-  border-color: var(--color-text-primary);
-  background-color: transparent;
-  color: var(--color-text-primary);
-}
-
-/* Clean Panel - Light Mode */
-.clean-panel {
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border);
+/* Card Hover Effect */
+.experience-card {
+  padding: 1.5rem;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  /* Subtle shadow */
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
 }
 
-.gradient-text {
+.experience-card:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+/* Nav Link Active State */
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.nav-link.active {
   color: var(--color-text-primary);
-  background: none;
-  -webkit-text-fill-color: initial;
 }
 
-.grid-bg {
-  background-color: var(--color-bg-primary);
-  /* Optional: Subtle grid pattern if desired, keeping clean for now */
+.nav-link-line {
+  width: 2rem;
+  height: 1px;
+  background-color: var(--color-text-secondary);
+  margin-right: 1rem;
+  transition: all 0.2s ease;
+}
+
+.nav-link.active .nav-link-line {
+  width: 4rem;
+  background-color: var(--color-text-primary);
+}
+
+.nav-link:hover .nav-link-line {
+  width: 3rem;
+  background-color: var(--color-text-primary);
+}
+
+.nav-link:hover {
+  color: var(--color-text-primary);
 }

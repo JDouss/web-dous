@@ -1,14 +1,12 @@
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Sidebar from './Sidebar';
 
 const Layout = ({ children }) => {
     return (
-        <div className="grid-bg" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Navbar />
-            <main style={{ flex: 1 }}>
+        <div className="lg-split-layout">
+            <Sidebar />
+            <main style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
                 {children}
             </main>
-            <Footer />
         </div>
     );
 };
